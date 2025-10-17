@@ -64,6 +64,9 @@ public class SignupMain {
                 System.out.print("사용자 이름: ");
                 System.out.print("비밀번호: ");
 
+                // SigninDto를 생성하여 로그인 정보 입력 받음(공백확인)
+                // 유효성 검사 완료 후 signin() 호출
+
             } else if ("3".equals(selectedMenu)) {
                 System.out.println("[ 가입된 회원 전체 조회 ]");
                 System.out.println(UserRepository.getInstans().toString());
