@@ -4,11 +4,6 @@ public class SigninDto {
     private String username;
     private String password;
 
-    public SigninDto(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
     public String getUsername() {
         return username;
     }

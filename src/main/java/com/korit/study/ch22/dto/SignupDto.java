@@ -8,7 +8,6 @@ public class SignupDto {
     private String password;
     private String confirmPassword;
 
-
     public String getUsername() {
         return username;
     }
@@ -33,9 +32,7 @@ public class SignupDto {
         this.confirmPassword = confirmPassword;
     }
 
-    // user값을 암호화해서 반환하는 코드
     public User toUser() {
         return new User(0, username, PasswordEncoder.encode(password));
     }
-
 }

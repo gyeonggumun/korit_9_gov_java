@@ -1,19 +1,21 @@
 package com.korit.study.ch22;
 
+import com.korit.study.ch22.dto.SigninDto;
 import com.korit.study.ch22.dto.SignupDto;
-import com.korit.study.ch22.entity.User;
 import com.korit.study.ch22.repository.UserRepository;
+import com.korit.study.ch22.service.SigninServiceImpl;
 import com.korit.study.ch22.service.SignupService;
 
+import javax.naming.CompositeName;
 import java.util.Scanner;
 
 public class SignupMain {
     public static void main(String[] args) {
         SignupService signupService = SignupService.getInstance();
-        UserRepository userRepository = UserRepository.getInstans();
+        SigninServiceImpl signinService = SigninServiceImpl.getInstance();
         Scanner scanner = new Scanner(System.in);
 
-        while(true) {
+        while (true) {
             System.out.println("[회원가입, 로그인]");
             System.out.println("1. 회원가입");
             System.out.println("2. 로그인");
@@ -28,27 +30,24 @@ public class SignupMain {
             } else if ("1".equals(selectedMenu)) {
                 System.out.println("[ 회원가입 ]");
                 SignupDto signupDto = new SignupDto();
-
                 while (true) {
-                    System.out.print("사용자 이름: ");
+                    System.out.print("사용자이름: ");
                     signupDto.setUsername(scanner.nextLine());
                     if (signupService.isValidDuplicatedUsername(signupDto.getUsername())) {
                         break;
                     }
                     System.out.println("이미 사용중인 사용자이름입니다.");
                 }
-
                 while (true) {
                     System.out.print("비밀번호: ");
                     signupDto.setPassword(scanner.nextLine());
-                    if(signupService.isValidPassword(signupDto.getPassword())) {
+                    if (signupService.isValidPassword(signupDto.getPassword())) {
                         break;
                     }
                     System.out.println("비밀번호는 공백일 수 없습니다. 다시 입력하세요.");
                 }
-
                 while (true) {
-                    System.out.print("비밀번호학인: ");
+                    System.out.print("비밀번호확인: ");
                     signupDto.setConfirmPassword(scanner.nextLine());
                     if (signupService.isValidConfirmPassword(signupDto.getPassword(), signupDto.getConfirmPassword())) {
                         break;
@@ -60,19 +59,35 @@ public class SignupMain {
                 System.out.println("<< 회원가입 완료 >>");
 
             } else if ("2".equals(selectedMenu)) {
-                System.out.println("[ 로그인 ]");
-                System.out.print("사용자 이름: ");
-                System.out.print("비밀번호: ");
-
                 // SigninDto를 생성하여 로그인 정보 입력 받음(공백확인)
                 // 유효성 검사 완료 후 signin() 호출
+                System.out.println("[ 로그인 ]");
+                SigninDto signinDto = new SigninDto();
+                while (true) {
+                    System.out.print("사용자이름: ");
+                    signinDto.setUsername(scanner.nextLine());
+                    if (!signinService.isEmpty(signinDto.getUsername())) {
+                        break;
+                    }
+                    System.out.println("사용자 이름을 입력하세요.");
+                }
+                while (true) {
+                    System.out.print("비밀번호: ");
+                    signinDto.setPassword(scanner.nextLine());
+                    if (!signinService.isEmpty(signinDto.getPassword())) {
+                        break;
+                    }
+                    System.out.println("비밀번호를 입력하세요.");
+                }
+                signinService.signin(signinDto);
+
 
             } else if ("3".equals(selectedMenu)) {
                 System.out.println("[ 가입된 회원 전체 조회 ]");
-                System.out.println(UserRepository.getInstans().toString());
+                System.out.println(UserRepository.getInstance().toString());
             }
         }
-        System.out.println("프로그램 종료 완료");
 
+        System.out.println("프로그램 종료 완료");
     }
 }
