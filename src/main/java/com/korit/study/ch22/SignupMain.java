@@ -6,7 +6,6 @@ import com.korit.study.ch22.repository.UserRepository;
 import com.korit.study.ch22.service.SigninServiceImpl;
 import com.korit.study.ch22.service.SignupService;
 
-import javax.naming.CompositeName;
 import java.util.Scanner;
 
 public class SignupMain {
@@ -24,6 +23,7 @@ public class SignupMain {
             System.out.print("선택 >> ");
             String selectedMenu = scanner.nextLine();
 
+            // 문자를 입력 받을 때는 equalsIgnoreCase를 이용해 대소문자를 확인하지 않음
             if ("q".equalsIgnoreCase(selectedMenu)) {
                 System.out.println("프로그램 종료 중...");
                 break;
@@ -50,7 +50,7 @@ public class SignupMain {
                     System.out.print("비밀번호확인: ");
                     signupDto.setConfirmPassword(scanner.nextLine());
                     if (signupService.isValidConfirmPassword(signupDto.getPassword(), signupDto.getConfirmPassword())) {
-                        break;
+                        break; // 위에서 받은 비밀번호와 방금 받은 비밀번호가 일치하면 while문 탈출
                     }
                     System.out.println("비밀번호가 일치하지 않습니다. 다시 입력하세요.");
                 }
@@ -66,7 +66,7 @@ public class SignupMain {
                 while (true) {
                     System.out.print("사용자이름: ");
                     signinDto.setUsername(scanner.nextLine());
-                    if (!signinService.isEmpty(signinDto.getUsername())) {
+                    if (!signinService.isEmpty(signinDto.getUsername())) { //공백인지 확인
                         break;
                     }
                     System.out.println("사용자 이름을 입력하세요.");
@@ -74,7 +74,7 @@ public class SignupMain {
                 while (true) {
                     System.out.print("비밀번호: ");
                     signinDto.setPassword(scanner.nextLine());
-                    if (!signinService.isEmpty(signinDto.getPassword())) {
+                    if (!signinService.isEmpty(signinDto.getPassword())) { // 공백인지 확인 isEmpty 객체안 isBlank함수사용
                         break;
                     }
                     System.out.println("비밀번호를 입력하세요.");
