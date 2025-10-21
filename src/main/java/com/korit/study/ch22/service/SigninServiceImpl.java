@@ -10,7 +10,6 @@ import java.util.Objects;
 public class SigninServiceImpl implements SigninService {
     // 싱글톤으로 만들것
     private static SigninServiceImpl instance;
-
     private UserRepository userRepository;
 
     private SigninServiceImpl(UserRepository userRepository) {
