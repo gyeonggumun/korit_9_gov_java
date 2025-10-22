@@ -20,9 +20,9 @@ public class GenericMain {
         }
 
         // Generic사용 방법 클래스뒤에 <>에 자료형을 담아 사용
-        Generic<String, Integer> e = new Generic<String, Integer>("문자열 데이터", "", 10, 3.14);
-        Generic<String, Integer> f = new Generic<>("문자열 데이터", "", 10, 3.14);
+        Generic<String, Integer> e = new Generic<String, Integer>("문자열 데이터", "", 3.14, 10);
+        Generic<String, Integer> f = new Generic<>("문자열 데이터", "", 3.14, 10);
 
-
+        Object[] arr2 = new Object[1]; // 배열은 객체가 없음으로 참조자료형이라 할 수 없기 때문에 Generic을 사용할 수 없음
     }
 }
