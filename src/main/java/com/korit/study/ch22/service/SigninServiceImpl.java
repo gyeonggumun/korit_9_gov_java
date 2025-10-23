@@ -3,6 +3,8 @@ package com.korit.study.ch22.service;
 import com.korit.study.ch22.dto.SigninDto;
 import com.korit.study.ch22.entity.User;
 import com.korit.study.ch22.repository.UserRepository;
+import com.korit.study.ch22.repository.UserRepositoryImpl;
+import com.korit.study.ch22.repository.UserRepositoryImpl2;
 import com.korit.study.ch22.util.PasswordEncoder;
 
 import java.util.Objects;
@@ -18,7 +20,8 @@ public class SigninServiceImpl implements SigninService {
 
     public static SigninServiceImpl getInstance() {
         if (Objects.isNull(instance)) {
-            instance = new SigninServiceImpl(UserRepository.getInstance());
+            // 이곳에서 변수명을 갈아끼우며 기능을 수정할 수 있음
+            instance = new SigninServiceImpl(UserRepositoryImpl2.getInstance());
         }
         return instance;
     }
