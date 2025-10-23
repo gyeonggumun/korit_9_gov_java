@@ -96,6 +96,8 @@ public class BoardMain {
         AllList.add(strMap3);
         AllList.add(strMap6);
 
+        System.out.println(AllList);
+
         // 강사님 풀이 ==========================================================================================
         ArrayList<HashMap<String, String>> l1 = new ArrayList<>();
         l1.add(new HashMap<String, String>());
@@ -146,21 +148,6 @@ public class BoardMain {
         boardList.add(boardMap2);
 
         System.out.println(boardList);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        System.out.println(AllList);
 
         Writer writer1 = new Writer("김준일", 32);
         Writer writer2 = new Writer("김준사", 34);
