@@ -11,5 +11,17 @@ public class BuilderMain {
                 .value2(32)
                 .build();
 
+        Product product = Product.builder().name("상품").price(1000).size("L").build();
+        System.out.println(product);
+
+        ComputerBuilder computerBuilder = Computer.builder();
+        computerBuilder.setCpu("i7");
+        computerBuilder.setRam(8);
+        Computer computer = computerBuilder.build();
+
+        ComputerBuilder computerBuilder1 = Computer.builder().cpu("i5").ram(16);
+        Computer computer2 = Computer.builder().build();
+
+        Computer computer3 = Computer.builder().cpu("i5").ram(16).build();
     }
 }
