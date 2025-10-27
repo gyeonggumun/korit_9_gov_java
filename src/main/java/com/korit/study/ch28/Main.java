@@ -26,7 +26,11 @@ public class Main {
             }
         };
         button.setClickListener(c);
-
         button.click();
+
+        // 조건이 충족이 되면 익명 클래스를 람다로 사용가능
+        Button shopButton = new Button();
+        shopButton.setClickListener(() -> System.out.println("상점으로 이동합니다."));
+        shopButton.click();
     }
 }
