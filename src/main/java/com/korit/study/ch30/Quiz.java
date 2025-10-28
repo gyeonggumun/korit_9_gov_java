@@ -1,5 +1,6 @@
 package com.korit.study.ch30;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
@@ -220,5 +221,212 @@ public class Quiz {
                 .map(f -> f.substring(f.lastIndexOf("/") + 1))
                 .toList();
         System.out.println(fileNames);
+
+        // filter 문제
+        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        System.out.println(numbers2.stream().filter( num -> num % 2 == 0).toList());
+
+        List<String> words2 = Arrays.asList("cat", "elephant", "dog", "butterfly", "ant", "tiger");
+        System.out.println(words2.stream().filter(str -> str.length() >= 5).toList());
+
+        List<String> names2 = Arrays.asList("Alice", "Bob", "Anna", "Charlie", "Andrew", "David");
+//        System.out.println(names2.stream().filter(str -> str.substring(1) == 'A').toList());
+
+        List<Integer> mixedNumbers = Arrays.asList(-5, 3, -2, 8, -1, 0, 7, -9, 4);
+        System.out.println(mixedNumbers.stream().filter(num -> num > 0 ).toList());
+
+        List<Product> products = Arrays.asList(
+                new Product("노트북", 1500000),
+                new Product("마우스", 30000),
+                new Product("키보드", 80000),
+                new Product("모니터", 300000),
+                new Product("USB", 15000)
+        );
+        System.out.println(products.stream().filter(n -> n.price <= 500000 && n.price >= 50000).map(n -> n.name).toList());
+
+        List<String> emails2 = Arrays.asList(
+                "user1@gmail.com",
+                "admin@company.com",
+                "support@gmail.com",
+                "info@naver.com",
+                "hello@gmail.com",
+                "test@daum.net"
+        );
+        System.out.println(emails2.stream().filter(str -> str.substring(str.indexOf("@")+1).equals("gmail.com")).toList());
+
+        List<Person2> people2 = Arrays.asList(
+                new Person2("김철수", 25),
+                new Person2("이영희", 17),
+                new Person2("박민수", 30),
+                new Person2("정지원", 16),
+                new Person2("최수현", 22)
+        );
+        System.out.println(people2.stream().filter(num -> num.age >= 19).map(p -> p.name+ "(" + p.age + ")").toList());
+
+        List<Student2> students2 = Arrays.asList(
+                new Student2("김철수", 85, 90),
+                new Student2("이영희", 92, 88),
+                new Student2("박민수", 65, 70),
+                new Student2("정지원", 78, 85),
+                new Student2("최수현", 95, 92)
+        );
+        System.out.println(students2.stream().filter(s -> s.englishScore >= 80 && s.mathScore >= 80).map(s -> s.name).toList());
+
+        List<String> articles = Arrays.asList(
+                "Java 프로그래밍 기초",
+                "Python으로 배우는 머신러닝",
+                "Java Stream API 완벽 가이드",
+                "JavaScript 최신 기능",
+                "Java Spring Boot 실전",
+                "React 입문 강좌"
+        );
+//        articles.stream().filter(str -> str.)
+
+        List<Item2> items2 = Arrays.asList(
+                new Item2("노트북", 5, true, 1000000),
+                new Item2("마우스", 0, true, 30000),
+                new Item2("키보드", 10, false, 50000),
+                new Item2("헤드셋", 3, true, 80000),
+                new Item2("웹캠", 0, false, 60000)
+        );
+        System.out.println(items2.stream().filter(item -> item.onSale == true && item.stock > 0).map(item -> item.name).toList());
+
+        List<String> data = Arrays.asList("apple", null, "banana", "", null, "cherry", "");
+        System.out.println(data.stream().filter(str -> str != null && !str.isBlank()).toList());
+
+        List<Integer> numbers3 = Arrays.asList(1, 2, 3, 2, 4, 5, 3, 6, 7, 5, 8);
+//        numbers3.stream().filter()
+
+        List<LocalDate> dates = Arrays.asList(
+                LocalDate.of(2024, 1, 1),  // 월요일
+                LocalDate.of(2024, 1, 6),  // 토요일
+                LocalDate.of(2024, 1, 7),  // 일요일
+                LocalDate.of(2024, 1, 10), // 수요일
+                LocalDate.of(2024, 1, 13), // 토요일
+                LocalDate.of(2024, 1, 14)  // 일요일
+        );
+        System.out.println(dates.stream().map(n -> n.getDayOfYear() + "-" + n.getDayOfMonth() + "-" + n.getDayOfWeek()).toList());
+    }
+}
+class Product {
+    String name;
+    int price;
+
+    public Product(String name, int price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+}
+class Person2 {
+    String name;
+    int age;
+
+    public Person2(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    @Override
+    public String toString() {
+        return "Person1{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
+}
+class Student2 {
+    String name;
+    int mathScore;
+    int englishScore;
+
+    public Student2(String name, int mathScore, int englishScore) {
+        this.name = name;
+        this.mathScore = mathScore;
+        this.englishScore = englishScore;
+    }
+
+    @Override
+    public String toString() {
+        return "Student2{" +
+                "name='" + name + '\'' +
+                ", mathScore=" + mathScore +
+                ", englishScore=" + englishScore +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getMathScore() {
+        return mathScore;
+    }
+
+    public int getEnglishScore() {
+        return englishScore;
+    }
+}
+
+class Item2 {
+    String name;
+    int stock;
+    boolean onSale;
+    int price;
+
+    public Item2(String name, int stock, boolean onSale, int price) {
+        this.name = name;
+        this.stock = stock;
+        this.onSale = onSale;
+        this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Item2{" +
+                "name='" + name + '\'' +
+                ", stock=" + stock +
+                ", onSale=" + onSale +
+                ", price=" + price +
+                '}';
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public boolean isOnSale() {
+        return onSale;
+    }
+
+    public int getPrice() {
+        return price;
     }
 }

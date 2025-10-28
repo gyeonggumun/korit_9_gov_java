@@ -84,9 +84,13 @@ public class StreamMain {
         });
         System.out.println(nums);
 
+        // 2. filter() 분류
+        List<Integer> odds = nums.stream()
+                .filter(num -> num % 2 != 0)
+                .toList();
+        System.out.println(odds);
 
     }
-
     class StreamMap {
         // 제네릭을 static메서드에 사용할 때는 자료형을 추론 할 수 있도록 설계를 해야함
         public static <T, R> List<R> map(List<T> list, Function<T, R> action) {
