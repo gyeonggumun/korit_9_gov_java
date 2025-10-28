@@ -69,6 +69,11 @@ public class LambdaInterface {
             System.out.println("숫자: " + d);
         }).accept(3.14);
 
+        // forEach()
+        List<String> nameList = List.of("김준일", "김준이");
+        nameList.forEach(n -> System.out.println(n));
+        nameList.forEach(System.out :: println);  // 더블 콜론 => 람다 메서드 참조
+
         // 3. 매개변수 x, 리턴 o
         String str = null;
         Supplier<Boolean> booleanSupplier = () -> Objects.isNull(str);
