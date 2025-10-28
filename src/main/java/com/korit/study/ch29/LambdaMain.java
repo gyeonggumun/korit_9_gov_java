@@ -1,3 +1,7 @@
+package com.korit.study.ch29;
+
+@FunctionalInterface  // 추상 메서드를 두개이상 만들면 오류로 막아 버림
+    // 람다 전용 인터페이스라는 명시를 해두는 것
 interface LambdaStudy {
     int calc(int a, int b, int c);
 }
