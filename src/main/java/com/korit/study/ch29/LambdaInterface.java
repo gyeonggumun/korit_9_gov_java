@@ -4,10 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 public class LambdaInterface {
@@ -127,5 +124,12 @@ public class LambdaInterface {
                 .collect(Collectors.toList())
                 .getFirst();
         System.out.println(foundName);
+
+        // 매개변수 o, 리턴 o 둘의 자료형이 동일한 경우
+        Function<String, String> f2 = s -> s + "문자열";  // f1, f2가 동일
+        BiFunction<String, String, String> f3 = (s1, s2) -> s1 + s2; // f3, f4가 동일
+        UnaryOperator<String> f1 = s -> s + "문자열";
+        BinaryOperator<String> f4 = (s1, s2) -> s1 + s2;
+
     }
 }
