@@ -31,6 +31,9 @@ class Employee {
         this.name = name;
         this.salary = salary;
     }
+    public EmployeeDTO toDto () {
+        return new EmployeeDTO(String.format("Mr./Ms/%s" , name), String.format("$%f", salary));
+    }
 
     public String getName() {
         return name;
@@ -48,14 +51,6 @@ class EmployeeDTO {
     public EmployeeDTO(String displayName, String salaryInfo) {
         this.displayName = displayName;
         this.salaryInfo = salaryInfo;
-    }
-
-    public String getDisplayName() {
-        return displayName;
-    }
-
-    public String getSalaryInfo() {
-        return salaryInfo;
     }
 
     @Override
@@ -214,5 +209,16 @@ public class Quiz {
         System.out.println(phoneNumbers.stream()
                 .map(str -> str.substring(0, 3) + "-" + str.substring(3, 7) + "-" + str.substring(7)).toList());
 
+        List<EmployeeDTO> employeeDTOS = employees.stream()
+                .map(Employee::toDto)
+                .toList();
+        System.out.println(employees);
+        System.out.println(employeeDTOS);
+
+        List<String> fileNames = filePaths.stream()
+                .map(f -> f.replaceAll("\\\\", "/"))
+                .map(f -> f.substring(f.lastIndexOf("/") + 1))
+                .toList();
+        System.out.println(fileNames);
     }
 }
