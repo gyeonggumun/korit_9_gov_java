@@ -1,6 +1,8 @@
 package com.korit.study.ch30;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -295,7 +297,26 @@ public class Quiz {
         System.out.println(data.stream().filter(str -> str != null && !str.isBlank()).toList());
 
         List<Integer> numbers3 = Arrays.asList(1, 2, 3, 2, 4, 5, 3, 6, 7, 5, 8);
-//        numbers3.stream().filter()
+        System.out.println(numbers3.stream()
+                .filter(num -> numbers3
+                .stream()
+                .filter(num2 -> num2 == num)
+                .count() == 1)
+                .toList());
+        // stream을 사용하지 않고 for문을 돌린 버전
+        List<Integer> filteringNumbers2 = new ArrayList<>();
+        for (Integer num : numbers3) {
+            int count = 0;
+            for (Integer num2 : numbers3) {
+                if (num2 == num) {
+                    count++;
+                }
+            }
+            if (count == 1) {
+                filteringNumbers2.add(num);
+            }
+        }
+        System.out.println(filteringNumbers2);
 
         List<LocalDate> dates = Arrays.asList(
                 LocalDate.of(2024, 1, 1),  // 월요일
@@ -305,7 +326,12 @@ public class Quiz {
                 LocalDate.of(2024, 1, 13), // 토요일
                 LocalDate.of(2024, 1, 14)  // 일요일
         );
-        System.out.println(dates.stream().map(n -> n.getDayOfYear() + "-" + n.getDayOfMonth() + "-" + n.getDayOfWeek()).toList());
+        System.out.println(LocalDate.of(2024,1,6).getDayOfWeek());
+
+        List<LocalDate> filteringDates = dates.stream()
+                .filter(localDate -> localDate.getDayOfWeek().name().equals("SATURDAY")
+                        || localDate.getDayOfWeek().name().equals("SUNDAY")).toList();
+        System.out.println(filteringDates);
     }
 }
 class Product {
