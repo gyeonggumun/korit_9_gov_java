@@ -6,6 +6,7 @@ import java.util.List;
 public class ExceptionMain2 {
     public static void main(String[] args) {
         List<String> names = List.of("김준일", "김준이");
+
         try {
             print(names, 3);
         } catch (IOException e) {

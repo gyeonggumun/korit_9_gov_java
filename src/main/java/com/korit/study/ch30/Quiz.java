@@ -121,7 +121,8 @@ class Student {
 public class Quiz {
     public static void main(String[] args) {
         List<String> names = Arrays.asList("alice", "bob", "charlie", "david");
-        System.out.println(names.stream().map(str -> str.toUpperCase()).toList());
+        System.out.println(names.stream().map(str -> "alice".toUpperCase()).toList());
+
 
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
         System.out.println(numbers.stream().map(num -> num * num).toList());
